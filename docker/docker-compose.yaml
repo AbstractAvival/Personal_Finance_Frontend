@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  primary_school_frontend:
+    image: personal_finance_frontend:1.0
+    container_name: personal_finance_frontend
+    build: ../
+    ports: 
+      - ${PERSONAL_FINANCE_FRONTEND_PORT}:3000
+    environment:
+      - NEXT_PUBLIC_AUTHENTICATION_TYPE=${AUTHENTICATION_TYPE}
+      - NEXT_PUBLIC_PERSONAL_FINANCE_FRONTEND_CONTAINER_NAME=${PERSONAL_FINANCE_FRONTEND_CONTAINER_NAME}
+    networks:
+      - personal-finance
+    volumes:
+      - ../:/app
+
+networks:
+  personal-finance:
